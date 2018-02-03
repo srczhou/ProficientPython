@@ -41,4 +41,4 @@ for i in [0, 1, 2, 5, 1222, 343466, 595959995959]:
 
 # 3 and 4 assume 64-bit number, but python3 integer has unlimited precision, so
 # for i = 1 << 70, 3 get list index out of range error, 4 get wrong results.
-
+# could imporve by using x.bit_length()
