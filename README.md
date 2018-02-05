@@ -1,2 +1,2 @@
 # ProficientPython  
-Practice makes perfect. Try to code everyday.
+Practice makes perfect.
