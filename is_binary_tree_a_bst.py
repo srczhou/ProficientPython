@@ -37,7 +37,7 @@ def is_binary_tree_bst_alternative(tree):
     prev = [None]
     return inorder_traversal(tree)
 
-# inorder walk should visit sorted keys, O(n)
+# BFS manner, O(n)
 def is_binary_tree_bst2(tree):
     QueueEntry = collections.namedtuple('QueueEntry',
                                         ('node', 'lower', 'upper'))
