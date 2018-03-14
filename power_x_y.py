@@ -21,7 +21,7 @@ def main():
         print('%g^%d: %g, %g' % (x, y, power_x_y(x, y), x**y))
         assert math.isclose(power_x_y(x, y), x**y)
     else:
-        for _ in range(10):
+        for _ in range(100):
             x, y = random.uniform(0.0, 10.0), random.randint(-32, 32)
             print('%g^%d: %g, %g' % (x, y, power_x_y(x, y), x**y))
             assert math.isclose(power_x_y(x, y), x**y)
