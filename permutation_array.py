@@ -43,6 +43,15 @@ def apply_permutation2(perm, A):
         else:                   # else won't run if hit the break
             cyclic_permutation(i, perm, A)
 
+# reverse permutation O(n) time and O(n) space
+def reverse_permutation(perm):
+    result = [-1] * len(perm)
+    for i in perm:
+        result[perm[i]] = i
+    return result
+
+# TODO: reverse permutation O(1) space
+
 def main():
     for per in itertools.permutations([0, 1, 2, 3, 4]):
         perm = list(per)
@@ -54,6 +63,9 @@ def main():
         A2 = ['a', 'b', 'c', 'd', 'e']
         apply_permutation2(perm, A2)
         assert A1 == A2
+        rperm = reverse_permutation(perm)
+        apply_permutation(rperm, A1)
+        assert A1 == ['a', 'b', 'c', 'd', 'e']
 
 if __name__ == '__main__':
     main() 
