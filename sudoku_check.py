@@ -9,8 +9,8 @@ def is_valid_sudoku(partial_assignment):
     # duplicates in {1, 2, ..., len(partial_assignment)}; otherwise return
     # False.
     def has_duplicate(block):
-        block = list(filter(lambda x: x != 0, block))
-        return len(block) != len(set(block))
+        block = list(filter(lambda x: x != 0, block))   #remove 0
+        return len(block) != len(set(block))            #check duplicate
 
     n = len(partial_assignment)
     # Check row and column constraints.
@@ -35,14 +35,18 @@ def is_valid_sudoku(partial_assignment):
 def is_valid_sudoku_pythonic(partial_assignment):
     region_size = int(math.sqrt(len(partial_assignment)))
     # max(iterable, *[,key,default])
-    # collections.Counter().values()  collections.Counter().keys()
+    # collections.Counter().values() is the counted number
+    # Counter().keys() are (i, str(c))                            #row
+    #                      (str(c), j)                            #column
+    #                      (i//region_size, j//region_size, str(c)) #small block
+    # str(c) to distinguish the row number and column number
     return max(collections.Counter(
-        k for i, row in enumerate(partial_assignment) for j, c in enumerate(row)
-        if c != 0
-        for k in ((i, str(c)), (str(c), j
-                                ), (i / region_size, j / region_size, str(c))))
-               .values(),
-               default=0) <= 1
+        k for i, row in enumerate(partial_assignment)
+          for j, c in enumerate(row) if c != 0
+          for k in ((i, str(c)),
+                    (str(c), j),
+                    (i // region_size, j // region_size, str(c)))
+        ).values(), default=0) <= 1
 
 
 def main():
