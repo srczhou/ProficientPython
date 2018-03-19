@@ -38,6 +38,7 @@ def string_to_int(s):
                             s[s[0] == '-':],
                             0) * (-1 if s[0] == '-' else 1)
 # string.digits is a string constants "0123456789"
+# s[0] == '-' returns 0 if false, 1 if true, because slice expect number.
 
 def directed_tests():
     assert '0' == int_to_string(0)
