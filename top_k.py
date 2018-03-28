@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+import collections
+import itertools
+import sys
+import random
+import heapq
+
+# the input stream is iterable, could be iter(list) during testing
+def top_k(k, stream):
+    # Entries are compared by their lengths.
+    min_heap = [(len(s), s) for s in itertools.islice(stream, k)]
+    heapq.heapify(min_heap)     ##### in-place
+    for next_string in stream:  ##### keep going through the iterable
+        # Push next_string and pop the shortest string in min_heap.
+        heapq.heappushpop(min_heap, (len(next_string), next_string))
+    return [p[1] for p in heapq.nsmallest(k, min_heap)]
+
+
+def main():
+    for _ in range(1000):
+        num = int(sys.argv[1]) if len(sys.argv) == 2 else random.randint(1, 10)
+        A = [str(random.randint(1, 101)) for _ in range(num)]
+        k = random.randint(1, num)
+        stream = iter(A)
+        result = top_k(k, stream)
+        A = sorted(A, key=lambda s: len(s))
+        assert collections.Counter(
+            [len(a) for a in result]) == collections.Counter(
+                [len(a) for a in A[-k:]])
+
+
+if __name__ == '__main__':
+    main()

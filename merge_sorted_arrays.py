@@ -3,6 +3,8 @@ import sys
 import random
 import heapq
 
+# always keep one item from each array in the heap.
+# so need keep the array number in the tuple.
 def merge_sorted_arrays(sorted_arrays):
     min_heap = []
     # Builds a list of iterators for each array in sorted_arrays.
