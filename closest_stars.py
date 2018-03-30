@@ -25,8 +25,9 @@ class Star:
     def __eq__(self, rhs):
         return math.isclose(self.distance, rhs.distance)
 
-
-
+# map(function, iterable)
+# *map(function, iterable)
+# use tuple (-star.distance, star)
 def find_closest_k_stars(k, stars):
     # max_heap to store the closest k stars seen so far.
     max_heap = []
