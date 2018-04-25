@@ -92,6 +92,7 @@ def find_smallest_subarray_covering_subset(stream, query_strings):
             self._size -= 1
 
     # Tracks the last occurrence (index) of each string in query_strings.
+    # return (loc.head.data, idx)
     loc = LinkedList()
     d = {s: None for s in query_strings}
     res = (-1, -1)
@@ -99,8 +100,8 @@ def find_smallest_subarray_covering_subset(stream, query_strings):
         if s in d:  # s is in query_strings.
             it = d[s]
             if it is not None:
-                # Explicitly remove s so that when we add it, it's the string most
-                # recently added to loc.
+                # Explicitly remove s so that when we add it, it's the string
+                # most recently added to loc.
                 loc.remove(it)
             loc.insert_after(idx)
             d[s] = loc.tail
